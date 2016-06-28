@@ -1,135 +1,101 @@
 $(document).ready(function() {
-  var currentCalcField = $('#calcNum1'),
-      currentTotal = 0,
+  var
+      currentTotal = null,
       currentOperator = ' ',
-      calcNum1 = Number($('#calcNum1').val()),
       input = $('#numInput'),
         calcBtn = $('#calcBtn'),
-       plus = $('calcBtnPlus')
-       minus = $('calcBtnMinus')
-       multiply = $('calcBtnMult'),
-       divide = $('calcBtnDvd'),
-       clear = $('calcBtnClr'),
-      answer  = '0',
+       plus = $('#calcBtnPlus'),
+       minus = $('#calcBtnMinus'),
+       multiply = $('#calcBtnMult'),
+       divide = $('#calcBtnDvd'),
+       clear = $('#calcBtnClr')
 
 
 
       //This computes the Answer
   $('#calcBtn').on('click', function() {
-
-
+    var currentInput = Number(input.val())
 
     if (currentOperator === '+') {
-      currentTotal = currentTotal + calcNum1
-    }
+      currentTotal = currentTotal + currentInput
+      }
     else if (currentOperator === '-') {
-      currentTotal = currentTotal - calcNum1
-
-    }
-    else if (currentOperator === '*') {
-      currentTotal = currentTotal * calcNum1
-
+      currentTotal = currentTotal - currentInput
     }
     else if (currentOperator === '/') {
-      currentTotal = currentTotal / calcNum1
+      currentTotal = currentTotal / currentInput
+    }
+    else if (currentOperator === '*') {
+      currentTotal = currentTotal * currentInput
     }
 
-
-    $('#calcAnswerOutput').html(currentTotal)
-    // currentCalcField.html('#calcAnswerOutput')
-
+    input.val(currentTotal)
+    currentTotal = null
   })
 // The Buttons
   $('#calcBtnPlus').on('click', function(){
-    var calcNum1 = $('#calcNum1')
-      currentOperator = '+'
-      currentTotal = currentTotal + Number(calcNum1.val())
-  alert(currentTotal)
-    calcNum1.val('')
+    var currentInput = Number(input.val())
+    currentOperator = '+'
+
+    if (currentTotal === null) {
+      currentTotal = currentInput
+    }
+    else {
+      currentTotal = currentTotal + currentInput
+    }
+
+
+    input.val('')
+
   })
 
   $('#calcBtnMinus').on('click', function(){
-    var calcNum1 = $('#calcNum1')
-      currentOperator = '-'
-      currentTotal = currentTotal - Number(calcNum1.val())
-  alert(currentTotal)
-    calcNum1.val('')
+    var currentInput = Number(input.val())
+
+    currentOperator = '-'
+    if (currentTotal === null) {
+      currentTotal = currentInput
+    }
+    else {
+       currentTotal = currentTotal - currentInput
+    }
+
+
+    input.val('')
   })
   $('#calcBtnMult').on('click', function(){
-    var calcNum1 = Number($('#calcNum1').val())
-      currentOperator = '*',
-      currentTotal = Number(calcNum1.val()),
-      currentTotal = currentTotal * Number(calcNum1.val())
+    var currentInput = Number(input.val())
+    currentOperator = '*'
 
-      alert(currentTotal)
-      alert(calcNum1.val(''))
+    if (currentTotal === null) {
+      currentTotal = currentInput
+    }
+    else {
+      currentTotal = currentTotal * currentInput
+    }
 
-
-    calcNum1.val('')
+    input.val('')
   })
   $('#calcBtnDvd').on('click', function(){
-    var calcNum1 = $('#calcNum1')
-      currentOperator = '/'
-      currentTotal = currentTotal / Number(calcNum1.val())
-        alert(currentTotal)
-    calcNum1.val('')
+    var currentInput = Number(input.val())
+    currentOperator = '/'
+
+    if (currentTotal === null) {
+      currentTotal = currentInput
+    }
+    else {
+      currentTotal = currentTotal / currentInput
+    }
+    input.val('')
   })
 
   $('#calcBtnClr').on('click', function(){
-
-    currentCalcField.val('')
-    $('#calcAnswerOutput').html('')
+    input.val('')
+    currentTotal = null
   })
 
-  $('#calcBtn1').on('click', function(){
-    var calcBtnValue = 1
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn2').on('click', function(){
-    var calcBtnValue = 2
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn3').on('click', function(){
-    var calcBtnValue = 3
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn4').on('click', function(){
-    var calcBtnValue = 4
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn5').on('click', function(){
-    var calcBtnValue = 5
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn6').on('click', function(){
-    var calcBtnValue = 6
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn7').on('click', function(){
-    var calcBtnValue = 7
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn8').on('click', function(){
-    var calcBtnValue = 8
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn9').on('click', function(){
-    var calcBtnValue = 9
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
-  })
-  $('#calcBtn0').on('click', function(){
-    var calcBtnValue = 0
-
-    currentCalcField.val(currentCalcField.val() + calcBtnValue)
+  $('.calcBtn').on('click', function(){
+    input.val(input.val() + this.value)
   })
 
 })
